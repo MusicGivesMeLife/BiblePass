@@ -26,6 +26,10 @@ psalm-11
 psalm-1:1
 psalm-11!
 psalm-1:1!
+Psalms
+psalms
+Psalms!
+psalms!
 Psalms11
 Psalms1:1
 Psalms11!

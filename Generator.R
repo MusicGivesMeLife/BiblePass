@@ -3,10 +3,11 @@ library('data.table')
 rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))
 
 books <- unique(rawb$book)
-books <- gsub(' ', '', books)
 master <- c()
-for (b in books){
+for (i in 1:length(books)){
+  b <- books[i]
   setb <- rawb[rawb$book == b,]
+  b <- gsub(' ', '', b)
   list <- c(b, tolower(b), paste(b, '!', sep=''), paste(tolower(b), '!', sep=''))
   for (c in unique(setb$chapter)){
     list <- c(list, paste(b, toString(c), sep=''))
@@ -36,25 +37,25 @@ for (b in books){
       list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), '!', sep=''))
       borig <- b
       if (grepl('\\d', b)) {
-        b <- gsub('1', 'I', b)
-        b <- gsub('2', 'II', b)
-        b <- gsub('3', 'III', b)
-        list <- c(list, paste(b, toString(c), toString(v), sep=''))
-        list <- c(list, paste(b, toString(c), ':', toString(v), sep=''))
-        list <- c(list, paste(b, toString(c), toString(v), '!', sep=''))
-        list <- c(list, paste(b, toString(c), ':', toString(v), '!', sep=''))
-        list <- c(list, paste(tolower(b), toString(c), toString(v), sep=''))
-        list <- c(list, paste(tolower(b), toString(c), ':', toString(v), sep=''))
-        list <- c(list, paste(tolower(b), toString(c), toString(v), '!', sep=''))
-        list <- c(list, paste(tolower(b), toString(c), ':', toString(v), '!', sep=''))
-        list <- c(list, paste(b, '-', toString(c), toString(v), sep=''))
-        list <- c(list, paste(b, '-', toString(c), ':', toString(v), sep=''))
-        list <- c(list, paste(b, '-', toString(c), toString(v), '!', sep=''))
-        list <- c(list, paste(b, '-', toString(c), ':', toString(v), '!', sep=''))
-        list <- c(list, paste(tolower(b), '-', toString(c), toString(v), sep=''))
-        list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), sep=''))
-        list <- c(list, paste(tolower(b), '-', toString(c), toString(v), '!', sep=''))
-        list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), '!', sep=''))
+        b3 <- gsub('1', 'I', b)
+        b3 <- gsub('2', 'II', b3)
+        b3 <- gsub('3', 'III', b3)
+        list <- c(list, paste(b3, toString(c), toString(v), sep=''))
+        list <- c(list, paste(b3, toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b3, toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b3, toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b3), toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b3), toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b3), toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b3), toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(b3, '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(b3, '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b3, '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b3, '-', toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b3), '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b3), '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b3), '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b3), '-', toString(c), ':', toString(v), '!', sep=''))
       }
       if (b == 'Revelation' || b == 'Psalm') {
         b2 <- paste(b, 's', sep="")
@@ -80,7 +81,7 @@ for (b in books){
   }
   list <- unique(list)
   master <- c(master, list)
-  write.table(data.table(list), paste('./Lists/', borig, ".txt", sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
+  write.table(data.table(list), paste('./Lists/', b, ".txt", sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 }
 list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!')
 for (c2 in 1:max(rawb$chapter)) {
