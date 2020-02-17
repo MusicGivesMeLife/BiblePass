@@ -4,6 +4,7 @@ rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE
 
 books <- unique(rawb$book)
 master <- c()
+list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!')
 for (i in 1:length(books)){
   b <- books[i]
   setb <- rawb[rawb$book == b,]
@@ -35,7 +36,14 @@ for (i in 1:length(books)){
       list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), sep=''))
       list <- c(list, paste(tolower(b), '-', toString(c), toString(v), '!', sep=''))
       list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), '!', sep=''))
-      borig <- b
+      list2 <- c(list2, paste('jesus', toString(c), toString(v), sep=''))
+      list2 <- c(list2, paste('jesus', toString(c), ':', toString(v), sep=''))
+      list2 <- c(list2, paste('Jesus', toString(c), toString(v), sep=''))
+      list2 <- c(list2, paste('Jesus', toString(c), ':', toString(v), sep=''))
+      list2 <- c(list2, paste('jesus', toString(c), toString(v), '!', sep=''))
+      list2 <- c(list2, paste('jesus', toString(c), ':', toString(v), '!', sep=''))
+      list2 <- c(list2, paste('Jesus', toString(c), toString(v), '!', sep=''))
+      list2 <- c(list2, paste('Jesus', toString(c), ':', toString(v), '!', sep=''))
       if (grepl('\\d', b)) {
         b3 <- gsub('1', 'I', b)
         b3 <- gsub('2', 'II', b3)
@@ -83,19 +91,7 @@ for (i in 1:length(books)){
   master <- c(master, list)
   write.table(data.table(list), paste('./Lists/', b, ".txt", sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 }
-list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!')
-for (c2 in 1:max(rawb$chapter)) {
-  for (v2 in 1:100) {
-    list2 <- c(list2, paste('jesus', toString(c2), toString(v2), sep=''))
-    list2 <- c(list2, paste('jesus', toString(c2), ':', toString(v2), sep=''))
-    list2 <- c(list2, paste('Jesus', toString(c2), toString(v2), sep=''))
-    list2 <- c(list2, paste('Jesus', toString(c2), ':', toString(v2), sep=''))
-    list2 <- c(list2, paste('jesus', toString(c2), toString(v2), '!', sep=''))
-    list2 <- c(list2, paste('jesus', toString(c2), ':', toString(v2), '!', sep=''))
-    list2 <- c(list2, paste('Jesus', toString(c2), toString(v2), '!', sep=''))
-    list2 <- c(list2, paste('Jesus', toString(c2), ':', toString(v2), '!', sep=''))
-  }
-}
+list2 <- sort(unique(list2))
 write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 master <- c(master, list2)
 write.table(data.table(master), paste('./Master.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
