@@ -1,0 +1,59 @@
+#!/usr/bin/env Rscript
+library('data.table')
+rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))
+
+books <- unique(rawb$book)
+books <- gsub(' ', '', books)
+master <- c()
+for (b in books){
+  setb <- rawb[rawb$book == b,]
+  list <- c()
+  for (c in unique(setb$chapter)){
+    list <- c(list, paste(b, toString(c), sep=''))
+    list <- c(list, paste(b, toString(c), '!', sep=''))
+    list <- c(list, paste(tolower(b), toString(c), sep=''))
+    list <- c(list, paste(tolower(b), toString(c), '!', sep=''))
+    for (v in setb[setb$chapter == c, 'verse']) {
+      list <- c(list, paste(b, toString(c), toString(v), sep=''))
+      list <- c(list, paste(b, toString(c), ':', toString(v), sep=''))
+      list <- c(list, paste(b, toString(c), toString(v), '!', sep=''))
+      list <- c(list, paste(b, toString(c), ':', toString(v), '!', sep=''))
+      list <- c(list, paste(tolower(b), toString(c), toString(v), sep=''))
+      list <- c(list, paste(tolower(b), toString(c), ':', toString(v), sep=''))
+      list <- c(list, paste(tolower(b), toString(c), toString(v), '!', sep=''))
+      list <- c(list, paste(tolower(b), toString(c), ':', toString(v), '!', sep=''))
+      borig <- b
+      if (grepl('\\d', b)) {
+        b <- gsub('1', 'I', b)
+        b <- gsub('2', 'II', b)
+        b <- gsub('3', 'III', b)
+        list <- c(list, paste(b, toString(c), toString(v), sep=''))
+        list <- c(list, paste(b, toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b, toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b, toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b), toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b), toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b), toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b), toString(c), ':', toString(v), '!', sep=''))
+      }
+    }
+  }
+  master <- c(master, list)
+  write.table(data.table(list), paste('./Lists/', borig, ".txt", sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
+}
+list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!')
+for (c2 in 1:max(rawb$chapter)) {
+  for (v2 in 1:100) {
+    list2 <- c(list2, paste('jesus', toString(c2), toString(v2), sep=''))
+    list2 <- c(list2, paste('jesus', toString(c2), ':', toString(v2), sep=''))
+    list2 <- c(list2, paste('Jesus', toString(c2), toString(v2), sep=''))
+    list2 <- c(list2, paste('Jesus', toString(c2), ':', toString(v2), sep=''))
+    list2 <- c(list2, paste('jesus', toString(c2), toString(v2), '!', sep=''))
+    list2 <- c(list2, paste('jesus', toString(c2), ':', toString(v2), '!', sep=''))
+    list2 <- c(list2, paste('Jesus', toString(c2), toString(v2), '!', sep=''))
+    list2 <- c(list2, paste('Jesus', toString(c2), ':', toString(v2), '!', sep=''))
+  }
+}
+write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
+master <- c(master, list2)
+write.table(data.table(master), paste('./Master.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
