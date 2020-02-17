@@ -7,12 +7,16 @@ books <- gsub(' ', '', books)
 master <- c()
 for (b in books){
   setb <- rawb[rawb$book == b,]
-  list <- c()
+  list <- c(b, tolower(b), paste(b, '!', sep=''), paste(tolower(b), '!', sep=''))
   for (c in unique(setb$chapter)){
     list <- c(list, paste(b, toString(c), sep=''))
     list <- c(list, paste(b, toString(c), '!', sep=''))
     list <- c(list, paste(tolower(b), toString(c), sep=''))
     list <- c(list, paste(tolower(b), toString(c), '!', sep=''))
+    list <- c(list, paste(b, '-', toString(c), sep=''))
+    list <- c(list, paste(b, '-', toString(c), '!', sep=''))
+    list <- c(list, paste(tolower(b), '-', toString(c), sep=''))
+    list <- c(list, paste(tolower(b), '-', toString(c), '!', sep=''))
     for (v in setb[setb$chapter == c, 'verse']) {
       list <- c(list, paste(b, toString(c), toString(v), sep=''))
       list <- c(list, paste(b, toString(c), ':', toString(v), sep=''))
@@ -22,6 +26,14 @@ for (b in books){
       list <- c(list, paste(tolower(b), toString(c), ':', toString(v), sep=''))
       list <- c(list, paste(tolower(b), toString(c), toString(v), '!', sep=''))
       list <- c(list, paste(tolower(b), toString(c), ':', toString(v), '!', sep=''))
+      list <- c(list, paste(b, '-', toString(c), toString(v), sep=''))
+      list <- c(list, paste(b, '-', toString(c), ':', toString(v), sep=''))
+      list <- c(list, paste(b, '-', toString(c), toString(v), '!', sep=''))
+      list <- c(list, paste(b, '-', toString(c), ':', toString(v), '!', sep=''))
+      list <- c(list, paste(tolower(b), '-', toString(c), toString(v), sep=''))
+      list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), sep=''))
+      list <- c(list, paste(tolower(b), '-', toString(c), toString(v), '!', sep=''))
+      list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), '!', sep=''))
       borig <- b
       if (grepl('\\d', b)) {
         b <- gsub('1', 'I', b)
@@ -35,9 +47,38 @@ for (b in books){
         list <- c(list, paste(tolower(b), toString(c), ':', toString(v), sep=''))
         list <- c(list, paste(tolower(b), toString(c), toString(v), '!', sep=''))
         list <- c(list, paste(tolower(b), toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(b, '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(b, '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b, '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b, '-', toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b), '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b), '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b), '-', toString(c), ':', toString(v), '!', sep=''))
+      }
+      if (b == 'Revelation' || b == 'Psalm') {
+        b2 <- paste(b, 's', sep="")
+        list <- c(list, b2, tolower(b2), paste(b2, '!', sep=''), paste(tolower(b2), '!', sep=''))
+        list <- c(list, paste(b2, toString(c), toString(v), sep=''))
+        list <- c(list, paste(b2, toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b2, toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b2, toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b2), toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b2), toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b2), toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b2), toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(b2, '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(b2, '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(b2, '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(b2, '-', toString(c), ':', toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b2), '-', toString(c), toString(v), sep=''))
+        list <- c(list, paste(tolower(b2), '-', toString(c), ':', toString(v), sep=''))
+        list <- c(list, paste(tolower(b2), '-', toString(c), toString(v), '!', sep=''))
+        list <- c(list, paste(tolower(b2), '-', toString(c), ':', toString(v), '!', sep=''))
       }
     }
   }
+  list <- unique(list)
   master <- c(master, list)
   write.table(data.table(list), paste('./Lists/', borig, ".txt", sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 }
