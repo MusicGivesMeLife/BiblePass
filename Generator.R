@@ -5,7 +5,8 @@ rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE
 books <- unique(rawb$book)
 master <- c()
 years <- 1800:2200
-sepchars <- c('@', '#', '$', '-', '&', '.', ' ', '+', ':', '_', '~')
+sepchars_y <- c('@', '!', '$', '-', '.', ':', '_')
+sepchars <- c('-', '_', ':', '.')
 list3 <- c()
 listS <- c()
 list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!')
@@ -19,7 +20,7 @@ for (i in 1:length(books)){
     list3 <- c(list3, paste(b, toString(y), '!', sep=''))
     list3 <- c(list3, paste(tolower(b), toString(y), sep=''))
     list3 <- c(list3, paste(tolower(b), toString(y), '!', sep=''))
-    for (sc in sepchars) {
+    for (sc in sepchars_y) {
       list3 <- c(list3, paste(b, sc, toString(y), sep=''))
       list3 <- c(list3, paste(b, sc, toString(y), '!', sep=''))
       list3 <- c(list3, paste(tolower(b), sc, toString(y), sep=''))
@@ -33,7 +34,7 @@ for (i in 1:length(books)){
       list3 <- c(list3, paste(b4, toString(y), '!', sep=''))
       list3 <- c(list3, paste(tolower(b4), toString(y), sep=''))
       list3 <- c(list3, paste(tolower(b4), toString(y), '!', sep=''))
-      for (sc in sepchars) {
+      for (sc in sepchars_y) {
         list3 <- c(list3, paste(b4, sc, toString(y), sep=''))
         list3 <- c(list3, paste(b4, sc, toString(y), '!', sep=''))
         list3 <- c(list3, paste(tolower(b4), sc, toString(y), sep=''))
