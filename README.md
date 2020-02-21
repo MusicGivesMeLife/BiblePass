@@ -8,7 +8,7 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 * Also tries singular and plural forms for Revelation/Revelations and Psalm/Psalms
 
 ## Output
-* ./Lists/<book of the Bible>.txt - Simple wordlist from each book of the Bible
+* ./Lists/'book of the Bible'.txt - Simple wordlist from each book of the Bible
 * ./Lists/Jesus.txt - Variations C/nc/AC of "jesus" combined with bible chapter/verse numbers
 * ./Lists/Years.txt - Books of the Bible + years (1800-2200) w/ and wo/ separating characters
 * ./Lists/SpecialMaster.txt - Master list of all books of the Bible with special characters
