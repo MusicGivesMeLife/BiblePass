@@ -1,5 +1,5 @@
 # BiblePass
-Generates wordlists of possible passwords based off of Bible verses (e.g. john316, Ephesians2:8, Revelation@2012, etc.)
+Generates wordlists of possible passwords based off of Bible verses (e.g. john316, Romans8:28, Ephesians2:8, Revelation@2012, etc.)
 
 ## Design
 * Generates different variations of book-chapter-verse, Book Capitalized/not capitalized/ALL CAPS
