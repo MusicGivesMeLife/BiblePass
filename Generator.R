@@ -136,6 +136,8 @@ for (i in 1:length(books)){
       list3 <- c(list3, paste(toupper(b), sc, toString(y), '!', sep=''))
     }
   }
+  write.table(data.table(list3), paste('./Lists/Years.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
+  list3 <- c()
   for (y in years2) {
     if (y < 10) {
       list3 <- c(list3, paste(b, paste0('0', toString(y)), sep=''))
@@ -425,6 +427,6 @@ for (i in 1:length(books)) {
 master <- unlist(master, use.names = FALSE)
 list2 <- sort(unique(list2))
 write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
-master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE)), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE)), list2)
+master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), list2)
 master <- unique(master)
 write.table(data.table(master), paste('./Master.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
