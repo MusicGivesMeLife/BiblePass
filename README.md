@@ -8,6 +8,9 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 * Tries singular and plural forms for Revelation/Revelations and Psalm/Psalms
 * Uses both numeral and word forms for chapter/verse numbers
 
+## Input
+* ./bibleTaxonomy.csv - CSV list of every book-chapter-verse of the bible in order
+
 ## Output
 * ./Lists/`book of the Bible`.txt - Simple wordlist from each book of the Bible
 * ./Lists/Jesus.txt - Variations C/nc/AC of "jesus" combined with bible chapter/verse numbers

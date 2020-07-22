@@ -90,21 +90,21 @@ num_to_stri <- function(numl) {
     numlist <- c(numlist, tolower(toString(paste(tcrfinal, sep="", collapse=""))))
   }
   return(numlist)
-}
+}    #Convert a number to equavalent word forms
 
-rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))
+rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))    #Read main list
 
-books <- unique(rawb$book)
-master <- c()
-years <- 1800:2200
-years2 <- 0:99
-sepchars_y <- c('@', '!', '$', '-', '.', ':', '_')
-sepchars <- c('_', '.', '-', '!', '@', ':')
-favs <- c('Genesis', 'Exodus', 'Job', 'Psalm', 'Proverbs', 'Matthew', 'Mark', 'Luke', 'John', 'Romans', '1 Corinthians', 'Acts', 'Revelation')
-list3 <- c()
-listS <- c()
-list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!', 'JESUS', 'JESUS!')
-looptimes <- c()
+books <- unique(rawb$book)    #Get list of all books of the bible
+master <- c()    #Initialize main list
+years <- 1800:2200    #Set the range of years we want for 4-digit years
+years2 <- 0:99    #Set the range of years we want for 2-digit years
+sepchars_y <- c('@', '!', '$', '-', '.', ':', '_')   #Separator characters to use with years
+sepchars <- c('_', '.', '-', '!', '@', ':')    #Full list of separator characters
+favs <- c('Genesis', 'Exodus', 'Job', 'Psalm', 'Proverbs', 'Matthew', 'Mark', 'Luke', 'John', 'Romans', '1 Corinthians', 'Acts', 'Revelation')    #List of popular books to use full list of separator chars with
+list3 <- c()    #Initialize list for years
+listS <- c()    #Initialize list for ones generated wit special characters
+list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!', 'JESUS', 'JESUS!')    #Initialize list for "jesus" variations
+looptimes <- c()    #Initialize loop timing counter
 if (file.exists(paste('./Lists/SpecialMaster.txt', sep=""))) 
   #Delete file if it exists
   file.remove(paste('./Lists/SpecialMaster.txt', sep=""))
