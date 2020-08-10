@@ -5,6 +5,8 @@ library('stringr')
 library('stringi')
 library('Hmisc')
 
+rm(list=ls())
+
 numbers_only <- function(x) !grepl("\\D", x)
 
 num_to_stri <- function(numl) {
