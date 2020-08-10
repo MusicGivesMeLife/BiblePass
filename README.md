@@ -8,6 +8,10 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 * Tries singular and plural forms for Revelation/Revelations and Psalm/Psalms
 * Uses both numeral and word forms for chapter/verse numbers
 
+## Scripts
+* ./Generator.R - Main script to generate all lists and compile ./Master.txt
+* ./RecompileOnly.R - Only compiles ./Master.txt, use this if you have all the lists ready (e.g. if you just downloaded the repo and want the final wordlist)
+
 ## Input
 * ./bibleTaxonomy.csv - CSV list of every book-chapter-verse of the bible in order
 
