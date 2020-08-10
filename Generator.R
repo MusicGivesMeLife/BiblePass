@@ -105,6 +105,9 @@ list3 <- c()
 listS <- c()
 list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!', 'JESUS', 'JESUS!')
 looptimes <- c()
+if (file.exists(paste('./Lists/NumbersOnly.txt', sep=""))) 
+  #Delete file if it exists
+  file.remove(paste('./Lists/NumbersOnly.txt', sep=""))
 if (file.exists(paste('./Lists/SpecialMaster.txt', sep=""))) 
   #Delete file if it exists
   file.remove(paste('./Lists/SpecialMaster.txt', sep=""))
@@ -116,6 +119,7 @@ for (i in 1:length(books)){
   setb <- rawb[rawb$book == b,]
   b <- gsub(' ', '', b)
   list <- c(b, tolower(b), paste(b, '!', sep=''), paste(tolower(b), '!', sep=''))
+  numlist <- c()
   fn <- paste('./Lists/', b, ".txt", sep="")
   if (file.exists(fn)) 
     #Delete file if it exists
@@ -253,6 +257,10 @@ for (i in 1:length(books)){
     }
     ptm <- proc.time()
     for (v in setb[setb$chapter == c, 'verse']) {
+      numlist <- c(numlist, paste(toString(c), toString(v), sep=''))
+      numlist <- c(numlist, paste(toString(c), ':', toString(v), sep=''))
+      numlist <- c(numlist, paste(toString(c), toString(v), '!', sep=''))
+      numlist <- c(numlist, paste(toString(c), ':', toString(v), '!', sep=''))
       list <- c(list, paste(b, toString(c), toString(v), sep=''))
       list <- c(list, paste(b, toString(c), ':', toString(v), sep=''))
       list <- c(list, paste(b, toString(c), toString(v), '!', sep=''))
@@ -408,10 +416,12 @@ for (i in 1:length(books)){
       looptimes <- c(looptimes, as.double(proc.time() - ptm)[3])
       print(paste0(b,toString(c),':',toString(v), ", Average per verse is ", round(mean(looptimes), digits = 3), "secs."))
       list <- unique(list)
+      write.table(data.table(numlist), paste('./Lists/NumbersOnly.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
       write.table(data.table(list), fn, col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
       write.table(data.table(listS), paste('./Lists/SpecialMaster.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE, append = TRUE)
       list <- c()
       listS <- c()
+      numlist <- c()
     }
   }
 }
@@ -424,9 +434,10 @@ for (i in 1:length(books)) {
   master <- c(master, read.table(fn, header = FALSE, stringsAsFactors = FALSE))
   print(paste0('Read ',b))
 }
+write.table(data.table(unique(unlist(read.table(paste('./Lists/NumbersOnly.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE))), paste('./Lists/NumbersOnly.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 master <- unlist(master, use.names = FALSE)
 list2 <- sort(unique(list2))
 write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
-master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), list2)
+master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/NumbersOnly.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), list2)
 master <- unique(master)
 write.table(data.table(master), paste('./Master.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
