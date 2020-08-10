@@ -90,9 +90,9 @@ num_to_stri <- function(numl) {
     numlist <- c(numlist, tolower(toString(paste(tcrfinal, sep="", collapse=""))))
   }
   return(numlist)
-}
+}    #Convert a number to equavalent word forms
 
-rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))
+rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))    #Read main list
 
 books <- unique(rawb$book)
 master <- c()
@@ -105,13 +105,13 @@ list3 <- c()
 listS <- c()
 list2 <- c('jesus', 'Jesus', 'jesus!', 'Jesus!', 'JESUS', 'JESUS!')
 looptimes <- c()
-if (file.exists(paste('./Lists/NumbersOnly.txt', sep=""))) 
+if (file.exists(paste('./Lists/NumbersOnly.txt', sep="")))
   #Delete file if it exists
   file.remove(paste('./Lists/NumbersOnly.txt', sep=""))
-if (file.exists(paste('./Lists/SpecialMaster.txt', sep=""))) 
+if (file.exists(paste('./Lists/SpecialMaster.txt', sep="")))
   #Delete file if it exists
   file.remove(paste('./Lists/SpecialMaster.txt', sep=""))
-if (file.exists(paste('./Lists/Years.txt', sep=""))) 
+if (file.exists(paste('./Lists/Years.txt', sep="")))
   #Delete file if it exists
   file.remove(paste('./Lists/Years.txt', sep=""))
 for (i in 1:length(books)){
@@ -121,7 +121,7 @@ for (i in 1:length(books)){
   list <- c(b, tolower(b), paste(b, '!', sep=''), paste(tolower(b), '!', sep=''))
   numlist <- c()
   fn <- paste('./Lists/', b, ".txt", sep="")
-  if (file.exists(fn)) 
+  if (file.exists(fn))
     #Delete file if it exists
     file.remove(fn)
   for (y in years) {
