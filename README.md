@@ -10,7 +10,7 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 
 ## Scripts
 * ./Generator.R - Main script to generate all lists and compile ./Master.txt
-* ./RecompileOnly.R - Only compiles ./Master.txt, use this if you have all the lists ready (e.g. if you just downloaded the repo and want the final wordlist)
+* ./RecompileOnly.R - Only compiles ./BiblePass.txt, use this if you have all the lists ready (e.g. if you just downloaded the repo and want the final wordlist)
 
 ## Input
 * ./bibleTaxonomy.csv - CSV list of every book-chapter-verse of the bible in order
@@ -21,4 +21,5 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 * ./Lists/Years.txt - Books of the Bible + years (1800-2200 and 00-99) w/ and wo/ separating characters
 * ./Lists/SpecialMaster.txt - Master list of all books of the Bible with special characters
 * ./Lists/NumbersOnly.txt - Compilation of chapter and verse numbers without books
-* ./Master.txt - All of the above
+* ./BiblePass.txt - All of the above
+* ./BiblePass_part`#`.txt - BiblePass.txt split into files about ~3mil lines each
