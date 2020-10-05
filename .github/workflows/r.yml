@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macOS-latest
     strategy:
       matrix:
         r-version: [3.5, 3.6]
