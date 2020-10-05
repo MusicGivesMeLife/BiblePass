@@ -7,4 +7,4 @@ Authors@R:
       role = c("aut", "cre")))
 Description: Wordlists Compiled From Bible Verses
 Imports: data.table, english, stringr, stringi, Hmisc, NCmisc
-License: MIT
+License: MIT + file LICENSE
