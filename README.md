@@ -1,3 +1,4 @@
+![R-CMD-check](https://github.com/MusicGivesMeLife/BiblePass/workflows/R-CMD-check/badge.svg)
 # BiblePass
 Generates wordlists of possible passwords based off of Bible verses (e.g. john316, Romans8:28, Ephesians2:8, Revelation@2012, GenesisOneOne, 8:5!, etc.)
 
