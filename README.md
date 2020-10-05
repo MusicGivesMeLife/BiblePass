@@ -22,4 +22,4 @@ Generates wordlists of possible passwords based off of Bible verses (e.g. john31
 * ./Lists/SpecialMaster.txt - Master list of all books of the Bible with special characters
 * ./Lists/NumbersOnly.txt - Compilation of chapter and verse numbers without books
 * ./BiblePass.txt - All of the above
-* ./BiblePass_part`#`.txt - BiblePass.txt split into files about ~3mil lines each
+* ./BiblePass_part`#`.txt - BiblePass.txt split into files about ~900k lines each
