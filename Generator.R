@@ -444,4 +444,4 @@ write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = F
 master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/NumbersOnly.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), list2)
 master <- unique(master)
 write.table(data.table(master), paste('./BiblePass.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
-file.split(paste('./BiblePass.txt', sep=""), size=3000000, same.dir=TRUE, verbose=FALSE)
+file.split(paste('./BiblePass.txt', sep=""), size=900000, same.dir=TRUE, verbose=FALSE)
