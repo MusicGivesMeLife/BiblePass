@@ -11,7 +11,7 @@ on:
 name: R-CMD-check
 
 jobs:
-  R-CMD-check:
+  R-CMD-check-win:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,9 +24,7 @@ jobs:
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
-
-jobs:
-  R-CMD-check:
+  R-CMD-check-mac:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
