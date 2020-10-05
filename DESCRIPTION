@@ -1,0 +1,9 @@
+Package: BiblePass
+Title: Basic Description File For Command Tests
+Version: 4.2.0
+Authors@R: 
+    c(person(given = "MusicGivesMeLife",
+             role = c("aut", "cre")))
+Description: Wordlists Compiled From Bible Verses
+Imports: data.table, english, stringr, stringi, Hmisc, NCmisc
+License: MIT
