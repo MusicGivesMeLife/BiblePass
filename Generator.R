@@ -97,7 +97,7 @@ num_to_stri <- function(numl) {
 }    #Convert a number to equavalent word forms
 
 rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))    #Read main list
-rawq <- read.csv("./qurantaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('surah','verse'))
+#rawq <- read.csv("./qurantaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('surah','verse'))
 
 books <- unique(rawb$book)
 master <- c()
