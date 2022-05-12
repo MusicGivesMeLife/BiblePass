@@ -27,5 +27,7 @@ master <- unlist(master, use.names = FALSE)
 
 master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/NumbersOnly.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Jesus.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE))
 master <- unique(master)
-write.table(data.table(master), paste('./BiblePass.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
+final.file <- file(paste('./BiblePass.txt', sep=""), "wb")
+write.table(data.table(master), final.file, col.names = FALSE, row.names = FALSE, quote = FALSE)
+close(final.file)
 file.split(paste('./BiblePass.txt', sep=""), size=900000, same.dir=TRUE, verbose=FALSE)

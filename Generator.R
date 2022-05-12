@@ -97,6 +97,7 @@ num_to_stri <- function(numl) {
 }    #Convert a number to equavalent word forms
 
 rawb <- read.csv("./bibletaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('book','chapter','verse'))    #Read main list
+rawq <- read.csv("./qurantaxonomy.csv", stringsAsFactors = FALSE, header = FALSE, col.names = c('surah','verse'))
 
 books <- unique(rawb$book)
 master <- c()
@@ -444,5 +445,7 @@ list2 <- sort(unique(list2))
 write.table(data.table(list2), paste('./Lists/Jesus.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
 master <- c(master, unlist(read.table(paste('./Lists/SpecialMaster.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/Years.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), unlist(read.table(paste('./Lists/NumbersOnly.txt', sep=""), header = FALSE, stringsAsFactors = FALSE), use.names = FALSE), list2)
 master <- unique(master)
-write.table(data.table(master), paste('./BiblePass.txt', sep=""), col.names = FALSE, row.names = FALSE, quote = FALSE)
+final.file <- file(paste('./BiblePass.txt', sep=""), "wb")
+write.table(data.table(master), final.file, col.names = FALSE, row.names = FALSE, quote = FALSE)
+close(final.file)
 file.split(paste('./BiblePass.txt', sep=""), size=900000, same.dir=TRUE, verbose=FALSE)
